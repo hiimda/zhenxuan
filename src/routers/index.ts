@@ -14,17 +14,6 @@ export interface RouteMeta {
 //对外暴露配置路由(常量路由):全部用户都可以访问到的路由
 export const routes = [
   {
-    //登录
-    path: '/login',
-    component: () => import('@/views/login.vue'),
-    name: 'login',
-    meta: {
-      title: '登录', //菜单标题
-      hidden: true, //代表路由标题在菜单中是否隐藏  true:隐藏 false:不隐藏
-      icon: 'Promotion', //菜单文字左侧的图标,支持element-plus全部图标
-    },
-  },
-  {
     //登录成功以后展示数据的路由
     path: '/',
     component: () => import('@/layout/index.vue'),
@@ -38,7 +27,7 @@ export const routes = [
     children: [
       {
         path: '/home',
-        component: () => import('@/views/home.vue'),
+        component: () => import('@/views/home/home.vue'),
         meta: {
           title: '首页',
           hidden: false,
@@ -50,7 +39,7 @@ export const routes = [
   {
     //404
     path: '/404',
-    component: () => import('@/views/404.vue'),
+    component: () => import('@/views/404/404.vue'),
     name: '404',
     meta: {
       title: '404',
@@ -60,13 +49,100 @@ export const routes = [
   },
   {
     path: '/screen',
-    component: () => import('@/views/screen.vue'),
+    component: () => import('@/views/screen/screen.vue'),
     name: 'Screen',
     meta: {
       hidden: false,
       title: '数据大屏',
       icon: 'Platform',
     },
+  },
+  {
+    path: '/acl',
+    component: () => import('@/layout/index.vue'),
+    name: 'Acl',
+    meta: {
+      title: '权限管理',
+      icon: 'Lock',
+    },
+    redirect: '/acl/user',
+    children: [
+      {
+        path: '/acl/user',
+        component: () => import('@/views/acl/user/user.vue'),
+        name: 'User',
+        meta: {
+          title: '用户管理',
+          icon: 'User',
+        },
+      },
+      {
+        path: '/acl/role',
+        component: () => import('@/views/acl/role/role.vue'),
+        name: 'Role',
+        meta: {
+          title: '角色管理',
+          icon: 'UserFilled',
+        },
+      },
+      {
+        path: '/acl/permission',
+        component: () => import('@/views/acl/permission/permission.vue'),
+        name: 'Permission',
+        meta: {
+          title: '菜单管理',
+          icon: 'Monitor',
+        },
+      },
+    ],
+  },
+  {
+    path: '/product',
+    component: () => import('@/layout/index.vue'),
+    name: 'Product',
+    meta: {
+      title: '商品管理',
+      icon: 'Goods',
+    },
+    redirect: '/product/trademark',
+    children: [
+      {
+        path: '/product/trademark',
+        component: () => import('@/views/product/trademark/trademark.vue'),
+        name: 'Trademark',
+        meta: {
+          title: '品牌管理',
+          icon: 'ShoppingCartFull',
+        },
+      },
+      {
+        path: '/product/attr',
+        component: () => import('@/views/product/attr/attr.vue'),
+        name: 'Attr',
+        meta: {
+          title: '属性管理',
+          icon: 'ChromeFilled',
+        },
+      },
+      {
+        path: '/product/spu',
+        component: () => import('@/views/product/spu/spu.vue'),
+        name: 'Spu',
+        meta: {
+          title: 'SPU管理',
+          icon: 'Calendar',
+        },
+      },
+      {
+        path: '/product/sku',
+        component: () => import('@/views/product/sku/sku.vue'),
+        name: 'Sku',
+        meta: {
+          title: 'SKU管理',
+          icon: 'Orange',
+        },
+      },
+    ],
   },
 ]
 
