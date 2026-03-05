@@ -16,7 +16,7 @@ export const routes = [
   {
     //登录
     path: '/login',
-    component: () => import('@/views/login/login.vue'),
+    component: () => import('@/views/login.vue'),
     name: 'login',
     meta: {
       title: '登录', //菜单标题
@@ -31,28 +31,18 @@ export const routes = [
     name: 'layout',
     meta: {
       title: '',
-      hidden: true,
+      hidden: false,
       icon: '',
     },
     redirect: '/home',
     children: [
       {
-        path: 'home',
-        component: () => import('@/views/loginScuessed/home/home.vue'),
+        path: '/home',
+        component: () => import('@/views/home.vue'),
         meta: {
           title: '首页',
           hidden: false,
           icon: 'HomeFilled',
-        },
-      },
-      {
-        path: 'screen',
-        component: () => import('@/views/loginScuessed/screen/screen.vue'),
-        name: 'Screen',
-        meta: {
-          hidden: false,
-          title: '数据大屏',
-          icon: 'Platform',
         },
       },
     ],
@@ -60,12 +50,22 @@ export const routes = [
   {
     //404
     path: '/404',
-    component: () => import('@/views/404/404.vue'),
+    component: () => import('@/views/404.vue'),
     name: '404',
     meta: {
       title: '404',
       hidden: true,
       icon: 'DocumentDelete',
+    },
+  },
+  {
+    path: '/screen',
+    component: () => import('@/views/screen.vue'),
+    name: 'Screen',
+    meta: {
+      hidden: false,
+      title: '数据大屏',
+      icon: 'Platform',
     },
   },
 ]

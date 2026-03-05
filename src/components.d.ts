@@ -11,7 +11,7 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    404: typeof import('./views/404/404.vue')['default']
+    404: typeof import('./views/404.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCol: typeof import('element-plus/es')['ElCol']
@@ -39,7 +39,7 @@ declare module 'vue' {
     IEpHomeFilled: typeof import('~icons/ep/home-filled')['default']
     IEpLike: typeof import('~icons/ep/like')['default']
     IEpStar: typeof import('~icons/ep/star')['default']
-    Login: typeof import('./views/login/login.vue')['default']
+    Login: typeof import('./views/login.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Screen: typeof import('./views/loginScuessed/screen/screen.vue')['default']
