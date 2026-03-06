@@ -2,17 +2,25 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 
 // 定义路由元信息类型
-export interface RouteMeta {
+export interface mata {
   title?: string // 菜单标题
   icon?: string // 菜单图标
   hidden?: boolean // 是否隐藏菜单
 }
-// 扩展 RouteRecordRaw，添加自定义 meta 类型
-
-// 定义路由规则
 
 //对外暴露配置路由(常量路由):全部用户都可以访问到的路由
 export const routes = [
+  //登录
+  {
+    path: '/login',
+    component: () => import('@/views/login/login.vue'),
+    name: 'login',
+    meta: {
+      title: '登录', //菜单标题
+      hidden: true, //代表路由标题在菜单中是否隐藏  true:隐藏 false:不隐藏
+      icon: 'Promotion', //菜单文字左侧的图标,支持element-plus全部图标
+    },
+  },
   {
     //登录成功以后展示数据的路由
     path: '/',

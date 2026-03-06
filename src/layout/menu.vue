@@ -1,5 +1,5 @@
 <template>
-  <template v-for="(item, index) in menuList" :key="item.path">
+  <template v-for="(item, index) in menuList" :key="item.path" v-if="menuList && menuList.length">
     <!--没有子路由-->
     <template v-if="!item.children">
       <el-menu-item :index="item.path" v-if="!item.meta.hidden" @click="goRoute">
@@ -28,6 +28,7 @@
         <EpIcon :name="item.meta.icon" />
         <span>{{ item.meta.title }}</span>
       </template>
+      <!--  自己调用自己：把父级的子菜单，当成新的menuList传给递归的自己-->
       <Menu :menuList="item.children"></Menu>
     </el-sub-menu>
   </template>
@@ -35,6 +36,10 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
+
+defineOptions({
+  name: 'Menu',
+})
 //获取父组件传递过来的全部路由数组
 defineProps(['menuList'])
 
@@ -44,11 +49,6 @@ let $router = useRouter()
 const goRoute = (vc: any) => {
   //路由跳转
   $router.push(vc.index)
-}
-</script>
-<script lang="ts">
-export default {
-  name: 'Menu',
 }
 </script>
 
