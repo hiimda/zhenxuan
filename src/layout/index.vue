@@ -7,7 +7,12 @@
       <el-scrollbar class="slider-scrollbar">
         <!-- 菜单组件 -->
         <!-- style="height: 1000px"是为了测试滚动条的效果，实际开发中可以根据菜单项的数量来决定是否需要滚动条 -->
-        <el-menu background-color="transparent" text-color="white" style="height: 1000px">
+        <el-menu
+          background-color="transparent"
+          text-color="white"
+          style="height: 1000px"
+          :default-active="route.fullPath"
+        >
           <Menu :menuList="userStore.menuList" />
         </el-menu>
       </el-scrollbar>
@@ -16,15 +21,14 @@
       <el-header class="layout_tabbar">Header</el-header>
       <el-main class="layout_main">
         <el-scrollbar class="main-scrollbar">
-          <EpIcon name="HomeFilled" />
-
-          <RouterView></RouterView>
+          <mainRouterView />
         </el-scrollbar>
       </el-main>
     </el-container>
   </el-container>
 </template>
 <script setup lang="ts">
+import mainRouterView from './mainRouter-view.vue'
 import { useRoute } from 'vue-router'
 import { useUserStore } from '@/stores/user'
 import logo from './logo.vue' // 导入logo组件
@@ -91,7 +95,7 @@ const userStore = useUserStore()
       height: $base-tabbar-height;
     }
     .layout_main {
-      padding: 0 0 40px 40px;
+      padding: 40px 0 40px 40px;
       background-color: $base-main-bg-color;
       left: $base-menu-width;
       top: $base-tabbar-height;

@@ -23,12 +23,15 @@
       </el-menu-item>
     </template>
     <!-- 有子路由且个数大于一个1 -->
-    <el-sub-menu :index="item.path" v-if="item.children && item.children.length > 1">
+    <el-sub-menu
+      :index="item.path"
+      v-if="item.children && item.children.length > 1"
+      popper-class="popper"
+    >
       <template #title>
         <EpIcon :name="item.meta.icon" />
         <span>{{ item.meta.title }}</span>
       </template>
-      <!--  自己调用自己：把父级的子菜单，当成新的menuList传给递归的自己-->
       <Menu :menuList="item.children"></Menu>
     </el-sub-menu>
   </template>
@@ -44,12 +47,12 @@ defineOptions({
 defineProps(['menuList'])
 
 //获取路由器对象
-let $router = useRouter()
+let router = useRouter()
 //点击菜单的回调
 const goRoute = (vc: any) => {
   //路由跳转
-  $router.push(vc.index)
+  router.push(vc.index)
 }
 </script>
 
-<style scoped></style>
+<style lang="scss"></style>
